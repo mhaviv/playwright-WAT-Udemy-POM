@@ -1,4 +1,5 @@
 Login = require('../pageObjects/login');
+data = require('../testData/data.json')
 
 
 describe('Post', () => {
@@ -6,7 +7,7 @@ describe('Post', () => {
   const login = new Login()
 
   beforeAll(async () => {
-    await page.goto('https://react-redux.realworld.io/#/login')
+    await page.goto(data.url)
   })
 
   test('Sign In', async () => {
@@ -15,9 +16,9 @@ describe('Post', () => {
 
     // Enter credentials to sign in
     const email = await login.email()
-    await email.fill('qacamp.acad@gmail.com') // using email method from login class
+    await email.fill(data.email) // using email method from login class
     await email.press('Tab')
-    await login.password_fill('test12345') // using password_fill method from login class and filling parameter with password
+    await login.password_fill(data.password) // using password_fill method from login class and filling parameter with password
     await login.signInButton_click()
 
     // Verify successful sign in
